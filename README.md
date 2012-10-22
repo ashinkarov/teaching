@@ -1,4 +1,5 @@
-opencl-course
-=============
+Welcome to the OpenCL course
+============================
 
-Materials for OpenCL course we run in Heriot-Watt.
+Here you can find some materials that might be useful
+for OpenCL course we run in Heriot-Watt university.

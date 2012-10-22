@@ -48,3 +48,5 @@ $ ./square CPU
 
 The task
 ========
+
+is going to be daunting :-)

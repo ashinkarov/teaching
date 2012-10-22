@@ -29,7 +29,8 @@ Executing
 =========
 
 To compile the binary, run make:
-```$ make
+```shell
+$ make
 cc -O3 -Wall -Wextra -I/opt/AMDAPP/include -std=c99 -std=c99 -L/opt/AMDAPP/lib/x86_64  -l OpenCL -o square square.c
 square.c: In function ‘main’:
 square.c:27: warning: unused parameter ‘argv’
@@ -37,9 +38,13 @@ square.c:27: warning: unused parameter ‘argv’
 
 Now you should have a binary file called `square`.  You can execute it
 using a GPU as a device by running:
-```$ ./square```
+```shell
+$ ./square
+```
 and on a CPU by running
-```$ ./square CPU```
+```shell
+$ ./square CPU
+```
 
 The task
 ========

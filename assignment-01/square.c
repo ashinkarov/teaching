@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <CL/cl.h>
+#include <OpenCL/opencl.h>
 
 #define DATA_SIZE 1024
 

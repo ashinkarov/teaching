@@ -5,17 +5,18 @@
 OPENCL	:= /opt/AMDAPP
 
 # C flags with strictest warnings.
-CFLAGS	+= -O3 -Wall -Wextra -I$(OPENCL)/include -std=c99
+CFLAGS	+= -Wall -Wextra  -std=c99
 
 # Linker flags.
-LDFLAGS += -L$(OPENCL)/lib/x86_64  -l OpenCL
 
+CC := clang
 
 all: square
 
 # Build a binary from C source.
 square: square.c
-	$(CC) $(CFLAGS) -std=c99 $(LDFLAGS) -o $@ $^
+	$(CC) -framework OpenCL $(CFLAGS) -std=c99 -o $@ $^ &&./square
+	
 
 # Remove the binary.
 clean:

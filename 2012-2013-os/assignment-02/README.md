@@ -30,11 +30,11 @@ int64_t xelapsed (struct timespec a, struct timespec b)
 void measure_fork (unsigned N)
 {
     struct timespec start, stop, finish;
-    clock_gettime (CLOCK_REALTIME, &amp;start);
+    clock_gettime (CLOCK_REALTIME, &start);
     /* Make N forks, call dummy in every child.  */
-    clock_gettime (CLOCK_REALTIME, &amp;stop);
+    clock_gettime (CLOCK_REALTIME, &stop);
     /* Wait for the forks.  */
-    clock_gettime (CLOCK_REALTIME, &amp;finish);
+    clock_gettime (CLOCK_REALTIME, &finish);
     printf ("%d proc: fork=%d wait=%d sum=%d\n",
             N, xelapsed (stop, start), xelapsed (finish, stop),
             xelapsed (finish, start);
@@ -49,7 +49,7 @@ librairy: In order to create a thread, use `pthread_create` function:
 ```c
 ...
 pthread_t pid;
-int ret = pthread_create (&amp;pid, NULL, dummy, NULL);
+int ret = pthread_create (&pid, NULL, dummy, NULL);
 ...
 ```
 where dummy is the function from the previous task.  An id of a thread will be stored
@@ -58,7 +58,7 @@ In order to wait for the thread termination, use the `pthread_join` function:
 ```c
 ...
 void *result;
-pthread_join (pid, &amp;result);
+pthread_join (pid, &result);
 ...
 ```
 where `pid` is the id of the thread you are waiting for.  The result can be analysed in

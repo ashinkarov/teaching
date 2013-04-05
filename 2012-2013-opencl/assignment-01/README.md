@@ -49,4 +49,4 @@ $ ./square CPU
 The task
 ========
 
-is going to be daunting :-)
+Please see `assignment-01.md` in the file list.

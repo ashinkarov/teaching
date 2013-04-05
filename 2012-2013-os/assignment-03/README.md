@@ -36,8 +36,8 @@ struct chunk_info {
 ```
 With this structure, the memory allocation after `malloc (n)`, `malloc (m)` would
 look like:
-![alt text](https://github.com/ashinkarov/teaching/tree/master/2012-2013-os/assignment-03/task-03-pic.png
-"Allocator structure in memory")
+
+![alt text](https://github.com/ashinkarov/teaching/blob/master/2012-2013-os/assignment-03/task-03-pic.png "Allocator structure in memory")
 
 Every time `malloc(x)` is called, we save a chunk of memory of 
 `size x + sizeof (struct chunk_info)` bytes at some address A.  Please note that 

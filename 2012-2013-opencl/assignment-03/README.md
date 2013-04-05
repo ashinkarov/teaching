@@ -72,3 +72,7 @@ $ ./transpose 3
 
 ```
 
+The task
+========
+
+Please see `assignment-03.md` in the file list.

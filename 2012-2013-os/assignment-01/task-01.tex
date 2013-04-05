@@ -1,0 +1,113 @@
+\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage[english]{babel}
+
+% Customizable sections
+\usepackage{sectsty}
+
+\usepackage{fancyhdr}
+\fancyhead[R]{} %\includegraphics[height=2cm]{hw.pdf}}
+\fancyhead[L]{{\sc F29OC Operating Systems and Concurency }}
+ 
+\fancyfoot[L]{Hand-out: 15/01/2013}
+\fancyfoot[R]{Hand-in:  29/01/2013}
+\fancyfoot[C]{}
+\pagestyle{fancy}
+
+\renewcommand{\headrulewidth}{0pt}
+
+\usepackage{graphicx}
+
+
+
+\title{ 
+    %{\sc F29OC Operating Systems and Concurency } \\
+    Task 01
+}
+\date{}
+
+\begin{document}
+    \maketitle
+    \thispagestyle{fancy}
+
+    \section*{General requirements}
+    Please submit the assignment as a \verb|*.zip| archive, where every problem is stored in
+    its own subdirectory.  All the code must be well-commented and must come with a Makefile 
+    which builds a program.  Notes and explanations may come in a separate file in the problem's
+    directory.  For notes and explanations use text or pdf format.
+
+    \section{Problem 1}
+    Find out what the following terms mean when speaking about UNIX processes:
+    \textit{zombie}, \textit{orphan}, \textit{daemon}.  
+    Answer the following questions providing reasonable explanations:
+    \begin{enumerate}
+        \item What happens when a child kills its parent?
+        \item Can a zombie do so, or it is too dead for that?
+        \item Can a daemon become a zombie?
+        \item How long can an orphan live on it's own, if at all?
+    \end{enumerate}
+
+
+    \section{Problem 2.1}
+    Write a program in C which reports local time in the system log every 10 seconds.  
+    
+    Use \verb|time.h| functions to get local time and convert it to string, use \verb|syslog.h|
+    to handle logging facilities.
+    
+    \section{Problem 2.2}
+    Make sure that the time-reporting program from the previous problem keeps running after its
+    parent or grandparents terminate.  \textit{Hint:} learn about daemons in UNIX.
+
+
+    \section{Problem 3.1}
+    Write a program in C that executes the \verb|ls| command, mirroring command line arguments,
+    reads the output and outputs it on \textit{stdout} only if the number of lines is smaller
+    than \textit{25}.  Otherwise the program should state: ``too many files''.
+
+    Use the \verb|fork| function to cerate a subprocess; use the \verb|execv| family of functions
+    to launch \verb|ls| and use pipes to read the output produced by the \verb|ls| command.  
+    Command line arguments passed to the \verb|main| function via its second argument (\textit{argv})
+    could be reused within \verb|execv| function call.  The following C code loads the content of
+    the \textit{fd} file descriptor into memory.
+{\small
+\begin{verbatim}
+        char* buf = NULL;
+        char* bufp;
+        size_t bufsz, cursz, curpos;
+        ssize_t ssz;
+        struct stat st;
+
+        /* Assuming that FD is a file descriptor opened for
+           reading, get file system I/O blocksize into BUFSZ.  */
+        if (fstat (fd, &st) >= 0) {
+                bufsz = (size_t) st.st_blksize;
+        } else {
+                /* Handle error.  */
+        }
+
+        /* Allocate buffer of size BUFSZ.  */
+        buf = (char *) malloc (bufsz);
+        curpos = 0;
+        cursz = bufsz;
+
+        /* Block read FD, storing data into BUF.  */
+        while ((ssz = read (fd, buf + curpos, bufsz)) > 0) {
+                curpos += ssz;
+                cursz = curpos + bufsz;
+                if (NULL == (bufp = (char *) realloc (buf, cursz))) {
+                        /* Handle error.  */
+                }
+                buf = bufp;
+        }
+
+        /* Zero-terminate BUF.  */
+        buf[curpos] = 0;
+\end{verbatim}
+}
+
+    \section{Problem 3.2}
+    Modify the previous task and pipe the output of the \verb|ls| command through 
+    \verb|less| command if the output is longer than \textit{25} lines.
+
+\end{document}
+

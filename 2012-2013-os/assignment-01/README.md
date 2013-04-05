@@ -39,33 +39,33 @@ reused within `execv` function call.  The following C code loads the content of 
 file descriptor into memory.
 
 ```c
-               char* buf = NULL;
-               char* bufp;
-               size_t bufsz, cursz, curpos;
-               ssize_t ssz;
-               struct stat st;
-               /* Assuming that FD is a file descriptor opened for
-                 reading, get file system I/O blocksize into BUFSZ.  */
-               if (fstat (fd, &amp;st) &#x003E;= 0) {
-                      bufsz = (size_t) st.st_blksize;
-               } else {
-                      /* Handle error.  */
-               }
-               /* Allocate buffer of size BUFSZ.  */
-               buf = (char *) malloc (bufsz);
-               curpos = 0;
-               cursz = bufsz;
-               /* Block read FD, storing data into BUF.  */
-               while ((ssz = read (fd, buf + curpos, bufsz)) &#x003E; 0) {
-                      curpos += ssz;
-                      cursz = curpos + bufsz;
-                      if (NULL == (bufp = (char *) realloc (buf, cursz))) {
-                             /* Handle error.  */
-                      }
-                      buf = bufp;
-               }
-               /* Zero-terminate BUF.  */
-               buf[curpos] = 0;
+   char* buf = NULL;
+   char* bufp;
+   size_t bufsz, cursz, curpos;
+   ssize_t ssz;
+   struct stat st;
+   /* Assuming that FD is a file descriptor opened for
+     reading, get file system I/O blocksize into BUFSZ.  */
+   if (fstat (fd, &st) >= 0) {
+          bufsz = (size_t) st.st_blksize;
+   } else {
+          /* Handle error.  */
+   }
+   /* Allocate buffer of size BUFSZ.  */
+   buf = (char *) malloc (bufsz);
+   curpos = 0;
+   cursz = bufsz;
+   /* Block read FD, storing data into BUF.  */
+   while ((ssz = read (fd, buf + curpos, bufsz)) > 0) {
+          curpos += ssz;
+          cursz = curpos + bufsz;
+          if (NULL == (bufp = (char *) realloc (buf, cursz))) {
+                 /* Handle error.  */
+          }
+          buf = bufp;
+   }
+   /* Zero-terminate BUF.  */
+   buf[curpos] = 0;
 ```
 ## 5  Problem 3.2
 Modify the previous task and pipe the output of the ls command through less command

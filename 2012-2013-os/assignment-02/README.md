@@ -4,7 +4,7 @@
 Please submit the assignment as a `*.zip` archive, where every problem is stored in
 its own subdirectory.  All the code must be well-commented and must come with a
 Makefile which builds a program. Notes and explanations may come in a separate file
-in the problem's directory. For notes and explanations use text or _pdf_ format.
+in the problem's directory.  For notes and explanations use text or _pdf_ format.
 
         
 ## Problem 1.1
@@ -12,7 +12,7 @@ Measure the time it takes to create a process in UNIX. Write a C program, that e
 _N_ forks, storing corresponding process ids in an array, and, after that, executes
 wait-calls for every child process.  Each child process should call the dummy function
 shown below.  Please be careful when measuring time.  One of the ways to measure
-time accurately is by using the library rt.  Consider the following template for your
+time accurately is by using the library `rt`.  Consider the following template for your
 program:
 
 ```c
@@ -45,7 +45,7 @@ Execute for various _N_-s: 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024.
 ## Problem 1.2
 Try to measure the overhead of thread creation and synchronisation. Apply the same
 approach as in problem 2.1, but use adequate library functions from the `POSIX pthread`
-librairy: In order to create a thread,use pthread_create function:
+librairy: In order to create a thread, use `pthread_create` function:
 ```c
 ...
 pthread_t pid;
@@ -54,7 +54,7 @@ int ret = pthread_create (&amp;pid, NULL, dummy, NULL);
 ```
 where dummy is the function from the previous task.  An id of a thread will be stored
 in the `pid`. The function returns 0 in case of success.
-In order to wait for the thread termination, use the pthread_join function:
+In order to wait for the thread termination, use the `pthread_join` function:
 ```c
 ...
 void *result;

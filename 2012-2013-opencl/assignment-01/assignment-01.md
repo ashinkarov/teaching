@@ -1,15 +1,15 @@
 # Assignment 01
 
-# Download the file from
+Download files from [here][1].
 
 In assignment-01 you will find your first OpenCL program `square.c`.
 Familiarise yourself with the OpenCL environment, compile and run `square.c`.
     
  1. Restructure `square.c` in a way that:
-    a. exposes more clearly the problem specific parts and that 
-    b. yields a suitable set of abstractions which
-       can conveniently be reused when writing further 
-       OpenCL kernels.
+     + exposes more clearly the problem specific parts and that 
+     + yields a suitable set of abstractions which
+        can conveniently be reused when writing further OpenCL kernels.
+    
     Apply good software engineering practice!
 
  2. Using the new framework from 1., write a program with a kernel which
@@ -33,3 +33,5 @@ Familiarise yourself with the OpenCL environment, compile and run `square.c`.
     running on the GPU with varying M and N. Contrast these numbers
     and compute the speedups obtained from the GPU use as compared to
     running on the CPU only. How do M and N affect your results?
+
+[1]: https://github.com/ashinkarov/teaching/tree/master/2012-2013-opencl/assignment-01
